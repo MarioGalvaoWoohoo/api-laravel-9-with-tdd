@@ -5,7 +5,7 @@ use App\Http\Controllers\Api\{
 };
 use Illuminate\Support\Facades\Route;
 
-// Route::apiResource('/users', UserController::class);
+Route::apiResource('/users', UserController::class);
 
 Route::prefix('/v1')->group(function () {
     Route::middleware(['jwt.verify'])->group(function () {
