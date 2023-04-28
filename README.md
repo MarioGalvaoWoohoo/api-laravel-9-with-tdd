@@ -12,7 +12,7 @@ Antes de começar, certifique-se de ter o Docker instalado em sua máquina. Voc�
 
 Para instalar e executar este projeto, siga os seguintes passos:
 
-* Clone este repositório em sua máquina local usando o comando git clone https://github.com/MarioGalvaoWoohoo/api-message.git
+* Clone este repositório em sua máquina local usando o comando git clone https://github.com/MarioGalvaoWoohoo/api-laravel-9-with-tdd.git
 * Navegue até dentro do diretório do projeto clonado.
 * Crie um arquivo .env na raiz do projeto e copie o conteúdo do arquivo .env.example para ele.
 * Execute o comando docker-compose up -d para iniciar o ambiente Docker.
