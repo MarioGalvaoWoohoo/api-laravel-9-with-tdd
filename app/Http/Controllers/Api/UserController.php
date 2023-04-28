@@ -7,6 +7,7 @@ use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Repository\Contracts\UserRepositoryInterface;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -33,6 +34,27 @@ class UserController extends Controller
                                 'per_page' => $response->perPage(),
                             ]
                         ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listAll()
+    {
+        try {
+            $user =  $this->repository->findAll();
+            return response()->json([
+                'message' => 'Listagem realizada com sucesso',
+                'data' => UserResource::collection($user),
+            ], 201);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+                'data' => false,
+            ], 404);
+        }
     }
 
     public function store(UserStoreRequest $request)
