@@ -117,6 +117,45 @@ class MessageRepositoryTest extends TestCase
         $this->assertIsObject($response);
     }
 
+    public function test_find_message_prioritize()
+    {
+        Message::factory()->create();
+
+        $response = $this->repository->findByMessagePrioritize();
+
+        $this->assertIsObject($response);
+    }
+
+    public function test_prioritize_message()
+    {
+        $message = Message::factory()->create();
+
+        $data = [
+            'priority' => 0,
+        ];
+
+        $reponseUpdate = $this->repository->update($message->id, $data);
+
+        $this->assertNotNull($reponseUpdate);
+        $this->assertIsBool($reponseUpdate);
+        $this->assertDatabaseHas('messages', [
+            'priority' => 0,
+        ]);
+
+        $response = $this->repository->prioritizeMessage($message->id);
+
+        $this->assertIsObject($response);
+    }
+
+    public function test_deprioritize_all_message()
+    {
+        Message::factory()->create();
+
+        $response = $this->repository->deprioritizeAllMessage();
+
+        $this->assertTrue($response);
+    }
+
     // public function test_find_not_found()
     // {
     //     $this->expectException(NotFoundException::class);

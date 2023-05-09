@@ -21,7 +21,7 @@ class MessageFactory extends Factory
             'message' => $this->faker->text(),
             'notify' => $this->faker->boolean(false),
             'type' => 2,
-            'priority' => 0,
+            'priority' => 1,
             'start_date' => $this->faker->dateTimeThisCentury->format('Y-m-d'),
             'end_date' => $this->faker->dateTimeThisCentury->format('Y-m-d'),
             'user_id' => 1,
